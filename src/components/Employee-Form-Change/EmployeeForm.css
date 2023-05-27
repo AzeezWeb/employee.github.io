@@ -102,8 +102,6 @@ form div:first-child input:focus-visible {
 form div:first-child input:hover {
   border: 1px solid #000
 }
-
-
 form div:last-child p {
   font-size: 18px;
   color: #999;
@@ -128,8 +126,6 @@ form div:last-child p {
   accent-color: red;
   cursor: pointer;
 }
-
-
 
 
 form select {
@@ -160,12 +156,6 @@ form input[type='date']:focus-visible {
   outline: 2px solid #1621b7;
 }
 
-              
-input[type='number']::-webkit-outer-spin-button,
-input[type='number']::-webkit-inner-spin-button {
-  -webkit-appearance: none;
-  margin: 0;
-}
 
 label.checkbox  {
   display: flex;

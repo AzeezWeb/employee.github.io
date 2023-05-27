@@ -30,7 +30,7 @@ function Employees( { addNew, setRemove,  data, dispatch, setChangeId}) {
             <span> + </span><p> Add New</p>
             </div>
           </div>
-          <EmployeTable chenge={addNew} setRemove={setRemove}  data={data} dispatch={dispatch} setChangeId={setChangeId}/>
+          <EmployeTable  setRemove={setRemove}  data={data} dispatch={dispatch} setChangeId={setChangeId}/>
         </div>
     </div>
   </>

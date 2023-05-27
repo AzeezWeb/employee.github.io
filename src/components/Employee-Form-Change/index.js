@@ -1,24 +1,29 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import "./EmployeeForm.css";
 
 
-const initialValue = {
-  name: "",
-  email: "",
-  mobile: "",
-  city: "",
-  department: "",
-}
-function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
+function EmployeeFormChange({ changeId, setChangeId, dispatch  }) {
+  
+  const initialValue = {
+    id: changeId[1].id,
+    name: changeId[1].name,
+    email: changeId[1].email,
+    mobile: changeId[1].mobile,
+    city: changeId[1].city,
+    department: changeId[1].department,
+  }
+  console.log(changeId);
+  const [value, setValue] = useState('')
+  
+  useEffect(() => {
+      setValue(initialValue)
+  },[changeId])
 
- 
-  const [value, setValue] = useState(initialValue);
 
-  // setValue(changeValue)
   const SubmitHandler = (e) => {
     e.preventDefault();
-    dispatch( { type: 'Add', payload: { value: value}})
-    setAdd(false)
+    dispatch( { type: 'Change', payload: { value: value}})
+    setChangeId(false, '')
     setValue(initialValue)
   }
 
@@ -26,19 +31,18 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
   const inputHandler = (e) => {
     const { name, value} = e.target;
     setValue((prev) => ( {...prev, [name]: value}))
-
   } 
   return (
-    <div className={add ? "Employee-Form-bg active" : "Employee-Form-bg"}>
+    <div className={changeId[0] ? "Employee-Form-bg active" : "Employee-Form-bg"}>
       <div className="Employee-Form">
         <div className="Employee-Form-title">
-          <h2> Employee Form</h2>
-          <button onClick={() => setAdd(false)}></button>
+          <h2> Employee Form 2</h2>
+          <button onClick={() => setChangeId([false, ''])}></button>
         </div>
-        <form onSubmit={SubmitHandler} >
+        <form  onSubmit={SubmitHandler}>
           <div>
             <input
-              value={value.name}
+              defaultValue={value.name}
               id="full-name"
               type="text"
               name="name"
@@ -46,7 +50,7 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
               onChange={inputHandler}
             />
             <input
-              value={value.email}
+              defaultValue={value.email}
               id="email"
               type="email"
               name="email"
@@ -54,16 +58,15 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
               onChange={inputHandler}
             />
             <input
-              value={value.mobile}
+              defaultValue={value.mobile}
               id="number"
               type="number"
               name="mobile"
-              min={10}
               placeholder="Mobile"
               onChange={inputHandler}
             />
             <input
-              value={value.city}
+              defaultValue={value.city}
               id="city"
               type="text"
               name="city"
@@ -75,15 +78,15 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
             <p> Gender</p>
             <div className="Form-Gender">
               <label>
-                <input type="radio" value="Male" defaultChecked name="Gender" />
+                <input type="radio" defaultValue="Male" defaultChecked name="Gender" />
                 <span>Male</span>
               </label>
               <label>
-                <input type="radio" value="Famele" name="Gender" />
+                <input type="radio" defaultValue="Famele" name="Gender" />
                 <span>Famele</span>
               </label>
               <label>
-                <input type="radio" value="Other" name="Gender" />
+                <input type="radio" defaultValue="Other" name="Gender" />
                 <span>Other</span>
               </label>
             </div>
@@ -95,7 +98,7 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
               <option value="HR"> HR</option>
             </select>
             <label>
-              <input type="date" value="28.05.2023" />
+              <input type="date"  />
             </label>
             <label className="checkbox">
               <input type="checkbox" value='checkbox' />
@@ -103,7 +106,7 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
             </label>
             <div className="Form-btn">
               <button  type="submit" >Submit </button> 
-              <button type="reset" onClick={() => setValue(initialValue)}> Reset</button>
+              <button type="reset" onClick={() => setValue('')}> Reset</button>
             </div>
           </div>
         </form>
@@ -112,4 +115,4 @@ function EmployeeForm({ add, setAdd, changeValue, dispatch }) {
   );
 }
 
-export default EmployeeForm;
+export default EmployeeFormChange;

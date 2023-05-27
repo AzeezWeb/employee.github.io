@@ -26,8 +26,7 @@ function EmployeTable( { chenge, setRemove, data, dispatch, setChangeId }) {
             <div 
               className="Change"
               onClick={() => {
-                      chenge(true);
-                      setChangeId(item)
+                      setChangeId([true, item])
                       }}
             > <FaPencilAlt/></div>
             <div
